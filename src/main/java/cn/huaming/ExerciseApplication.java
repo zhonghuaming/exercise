@@ -1,16 +1,18 @@
 package cn.huaming;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
+
+import java.util.HashMap;
 
 @SpringBootApplication
-//@ConfigurationPropertiesScan
 public class ExerciseApplication {
 
     public static void main(String[] args) {
@@ -18,10 +20,10 @@ public class ExerciseApplication {
 //        System.setProperty("spring.devtools.restart.enabled", "false");
 //        SpringApplication.run(ExerciseApplication.class, args);
 
-        System.setProperty("server.port","8084");
+//        System.setProperty("server.port","8084");//优先级比properties高
         SpringApplication springApplication = new SpringApplication(ExerciseApplication.class);
         HashMap<String, Object> map = new HashMap<>();
-        map.put("server.port","8083");
+//        map.put("server.port","8083");//优先级比properties低
         springApplication.setDefaultProperties(map);
         springApplication.setBannerMode(Banner.Mode.OFF);
         String[] strings = {"debug"};
@@ -33,5 +35,15 @@ public class ExerciseApplication {
 //            .run(args);
 
 
+    }
+
+    @Bean
+    public FilterRegistrationBean setFilter() {
+        FilterRegistrationBean filterBean = new FilterRegistrationBean();
+//		filterBean.setFilter(new OpenSessionInViewFilter());
+        filterBean.setFilter(new OpenEntityManagerInViewFilter());
+        filterBean.setName("FilterController");
+        filterBean.addUrlPatterns("/*");
+        return filterBean;
     }
 }

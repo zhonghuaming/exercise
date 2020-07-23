@@ -15,7 +15,7 @@ public class CustomizationBean implements WebServerFactoryCustomizer<Configurabl
 
     @Override
     public void customize(ConfigurableServletWebServerFactory server) {
-        server.setPort(9000);
+//        server.setPort(9000);
     }
 
 }

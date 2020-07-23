@@ -1,11 +1,12 @@
 package cn.huaming.fastjson;
 
-import cn.huaming.fastjson.FastjsonDesensitizeFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,7 +22,7 @@ public class JsonConfig extends WebMvcConfigurationSupport {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         //创建配置类
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setSerializeFilters(new FastjsonDesensitizeFilter(),new SimplePropertyPreFilter());
+        fastJsonConfig.setSerializeFilters(new ScPropertyPreFilter());
         //修改配置返回内容的过滤
         fastJsonConfig.setSerializerFeatures(
             SerializerFeature.DisableCircularReferenceDetect,

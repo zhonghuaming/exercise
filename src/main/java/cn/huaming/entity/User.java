@@ -1,10 +1,6 @@
 package cn.huaming.entity;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
-import com.alibaba.fastjson.support.spring.PropertyPreFilters;
-import com.alibaba.fastjson.support.spring.PropertyPreFilters.MySimplePropertyPreFilter;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,5 +32,4 @@ public class User implements Serializable {
 
     @Column(name = "pwd")
     private String pwd;
-
 }

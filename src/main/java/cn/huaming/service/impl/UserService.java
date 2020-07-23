@@ -3,6 +3,7 @@ package cn.huaming.service.impl;
 import cn.huaming.entity.User;
 import cn.huaming.repo.UserRepository;
 import cn.huaming.service.IUserService;
+import cn.huaming.transactional.TestUser;
 import com.alibaba.fastjson.JSON;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,12 @@ public class UserService implements IUserService {
     @Autowired
     private UserServiceB userServiceB;
 
+    @Override
+    @Transactional
+    public String testUser(String name) {
+        TestUser testUser = new TestUser();
+        return "success";
+    }
 
     @Override
     @Transactional
