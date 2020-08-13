@@ -1,8 +1,5 @@
 package cn.huaming.springboot.listener;
 
-import java.util.concurrent.BrokenBarrierException;
-import org.springframework.boot.availability.AvailabilityChangeEvent;
-import org.springframework.boot.availability.LivenessState;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
